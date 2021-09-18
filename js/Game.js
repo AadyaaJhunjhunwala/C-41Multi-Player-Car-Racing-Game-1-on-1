@@ -48,6 +48,7 @@ class Game {
     form.hide();
 
     Player.getPlayerInfo();
+    player.getFinishedPlayers()
     
     if(allPlayers !== undefined){
       //var display_position = 100;
@@ -59,7 +60,7 @@ class Game {
       var index = 0;
 
       //x and y position of the cars
-      var x = 0;
+      var x = 100;
       var y;
 
       for(var plr in allPlayers){
@@ -94,6 +95,16 @@ class Game {
       if(player.distance>3860)
       {
         gameState=2
+        player.rank= player.rank+1
+        Player.updateFinishedPlayers(player.rank)
+        textSize(30)
+        fill("black")
+        if(player.rank===4)
+        {
+          text("You Lose",100,-3100)
+        }
+      
+        text("Rank" + player.rank,100,-3050)
       }
     }
 
@@ -102,6 +113,7 @@ class Game {
 end()
 {
 console.log("GAME ENDED")
+console.log("Player Rank" + player.rank)
 }
 
 
